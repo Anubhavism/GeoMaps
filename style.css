@@ -3,8 +3,90 @@ html, body {
   margin: 0;
   padding: 0;
 }
+#overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.54);
+    z-index: 9;
+    display: none;
+}
+#loadingText {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 2rem;
+    width: 10rem;
+    font-size: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #fefefe;
+    background: #333;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+#overlay.active {
+  display: block;
+}
 #map {
   height: 50%;
   width: 80%;
-  margin: 5% 10%;
+  margin: 0 auto 1rem;
+}
+
+#weather-ui {
+    width: 50%;
+    margin: auto;
+    background-color: #b2dfdb;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+    padding: 1rem;
+}
+
+.w-row {
+    display: flex;
+}
+
+
+
+#w-location {
+    font-size: 3rem;
+    color: #333;
+    width: 70%;
+}
+
+#w-date {
+    font-size: 1.5rem;
+    color: #333;
+    line-height: 1.5rem;
+    margin-left: 1rem;
+}
+
+#w-temp {
+    font-weight: 700;
+    display: inline-block;
+    font-size: 4rem;
+    width: 70%;
+}
+
+#w-desc {
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    color: #333;
+}
+
+.w-info {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.w-code {
+    background: #efefef;
+    margin: 1rem 0 0;
+    padding: 1rem;
 }

@@ -5,10 +5,32 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-
+<div id="overlay">
+    <div id="loadingText">
+        Please wait
+    </div>    
+</div>
 
  <div id="map"></div>
- <div id="demo"></div>
+ <div id="weather-ui">
+     <div class="w-row">
+        <div id="w-location"></div>
+        <div id="w-date"></div>
+     </div>
+     <div class="w-row">
+        <div id="w-desc"></div>
+     </div>
+     <div class="w-row">   
+        <div id="w-temp"></div>
+        <div class="w-info">
+            <div id="w-humidity"></div>
+            <div id="w-wind"></div>
+        </div>
+     </div>
+ </div>
+ <div class="w-code">
+    <code class="prettyprint" id="weather-json"></code>
+ </div>
     <script src="script.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBFWNzsNblQPEnZ6GnRay3_KcDiKCC_y3o&callback=initMap">
     </script>

@@ -45,11 +45,36 @@
       }
       function weatherUpdate(pos){
         var openWeatherMapKey = "a051d73e4268b2723f0520dffbef3332";
-        var url="http://api.openweathermap.org/data/2.5/weather?lat="+pos.lat+"&lon="+pos.lng+"&appid="+openWeatherMapKey;
+        var url="http://api.openweathermap.org/data/2.5/weather?lat="+pos.lat+"&lon="+pos.lng+"&appid="+openWeatherMapKey+"&units=metric";
+        var blockUI = document.getElementById("overlay");
+        if (!blockUI.classList.contains('active')) {
+          blockUI.className += " active";
+        }
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML = JSON.stringify(this.responseText, null, 2);
+            document.getElementById("weather-json").innerHTML = this.responseText;
+            var weatherData = JSON.parse(this.responseText);
+            if(!!weatherData.name) {
+              document.getElementById("w-location").innerHTML = weatherData.name;
+            }
+            var d = new Date();
+            document.getElementById("w-date").innerHTML = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + (d.getHours()>9?d.getHours():'0'+d.getHours()) + ' : ' + d.getMinutes();
+            if(!!weatherData.weather[0].main && !!weatherData.weather[0].description) {
+              document.getElementById("w-desc").innerHTML = weatherData.weather[0].main + ' - ' + weatherData.weather[0].description;
+            }
+            if(!!weatherData.main.temp) {
+              document.getElementById("w-temp").innerHTML = weatherData.main.temp + '<sup><small>&deg; C</small><sup>';
+            }
+            if(!!weatherData.main.humidity) {
+              document.getElementById("w-humidity").innerHTML = 'Humidity : ' + weatherData.main.humidity + '%';
+            }
+            if(!!weatherData.wind.speed) {
+              document.getElementById("w-wind").innerHTML = 'Wind : ' + weatherData.wind.speed + 'km/h';
+            }
+            if (blockUI.classList.contains('active')) {
+              blockUI.classList.remove("active");
+            }
           }
         };
         xmlhttp.open("GET", url, true);
